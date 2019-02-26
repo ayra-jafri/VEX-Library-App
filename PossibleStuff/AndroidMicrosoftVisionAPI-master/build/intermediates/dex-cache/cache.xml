@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.1.1_9f587e225bc554d881523170cca0d94a7e6ce213.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.1.1_9de406515e3e9d82bb965f252ca1232ff0a1e3d6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\exploded-aar\com.microsoft.projectoxford\vision\1.0.374\jars\libs\commons-io-2.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b1b6ea3b7e4aa4f492509a4952029cd8e48019ad">
+        <dex dex="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\pre-dexed\debug\commons-io-2.4_fd264ae1ed4af7e0681cc798344165816be34f29.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\exploded-aar\com.microsoft.projectoxford\vision\1.0.374\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9106258dc9ec0ed3b24aea758c35a3839cad73d">
+        <dex dex="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\pre-dexed\debug\com.microsoft.projectoxford-vision-1.0.374_fb1155df4db5f59fa7dcc3b36db93544f8a90e39.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-25.1.1_6e831157107ae24fee036abb3348dee10a16c210.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-25.1.1_a774b0e35be889e40e6502b944fcb2ab92741595.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
+        <dex dex="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-25.1.1_97280d593d19616b62323f32b849ef798dacb633.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\gorke\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.1\support-annotations-25.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\pre-dexed\debug\support-annotations-25.1.1_24bc229c81f88e6484d5469af053b466b719f80e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-25.1.1_4dd4f5c245a656740355bfa5e98faa27d83a9d14.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-25.1.1_a37ede03fffb04ff6649ff7c46b0e11c9df00895.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-25.1.1_87c5c5e616bc5042e85c53915109b0ad6b756160.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\gorke\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\pre-dexed\debug\gson-2.3.1_d1b3da0020f0ef220cf88cc289432c02925547ac.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="C:\Users\gorke\Downloads\AndroidMicrosoftVisionAPI-master\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-25.1.1_0d94da9c822913df0c641f01519ec897425ae879.jar" />
+    </item>
+
+</items>
