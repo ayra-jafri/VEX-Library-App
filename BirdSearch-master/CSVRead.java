@@ -24,6 +24,7 @@ public class CSVRead {
     public int birdInQuestion;  
     public int pos;
     public String checker;
+    public String message;
     public int position1;
     public int position2;
     public CSVRead () throws Exception{
@@ -55,18 +56,24 @@ public class CSVRead {
         }       
         CSVFile.close();        
         System.out.println();
+        message = "";
         System.out.println("Hello! I'm Birdbot, your BirdSearch application.");
+        message = "Hello! I'm Birdbot, your BirdSearch application.";
         Scanner in = new Scanner(System.in);
         System.out.println("wanna talk about birds?");
+        message= "wanna talk about birds?";
         String input = in.nextLine();
         if (findKeyword(input, "yes", 0) >= 0 || findKeyword(input, "sure", 0) >= 0 || findKeyword(input, "yeah", 0) >= 0) {
             System.out.println("Awesome!");
+            message = "Awesome!";
         } else if (findKeyword(input, "Tell me about the", 0) >= 0 || findKeyword(input, "know about the", 0) >= 0 || findKeyword(input, "learn about the", 0) >= 0 || findKeyword(input, "hear about the", 0) >= 0) {
             TellMeProtocol(input);
         } else {
             System.out.println("TOO BAD! We're talking about birds!");
+            message = "TOO BAD! We're talking about birds!";
         }
         System.out.println("So do you have a specific bird to talk about or do you have a characteristic you want to find out which birds are in?");
+        message = "So do you have a specific bird to talk about or do you have a characteristic you want to find out which birds are in?";
         Prompt();
     }
     
@@ -76,7 +83,9 @@ public class CSVRead {
         if (findKeyword(input, "tell me about a random bird", 0) >= 0 || findKeyword(input, "give me a random bird", 0) >= 0 || findKeyword(input, "show me a random bird", 0) >= 0) {
             int RandomBird = (int)(Math.random()*34325);
             System.out.println("Okay, here's a bird I really like! The " + iterateUp(englishName, RandomBird).toLowerCase() + " belongs to the " + speciesGroup.get(RandomBird) + " group, and lives in the " + Direction(range.get(birdInQuestion)) + ".");
+            message = "Okay, here's a bird I really like! The " + iterateUp(englishName, RandomBird).toLowerCase() + " belongs to the " + speciesGroup.get(RandomBird) + " group, and lives in the " + Direction(range.get(birdInQuestion)) + ".";
             System.out.println("Pretty nifty, huh? is there any other bird you want to learn about?");
+            message = "Pretty nifty, huh? is there any other bird you want to learn about?";
             Prompt();
         }
         else if (findKeyword(input, "Tell me about the", 0) >= 0 || findKeyword(input, "know about the", 0) >= 0 || findKeyword(input, "learn about the", 0) >= 0 || findKeyword(input, "hear about the", 0) >= 0) {
@@ -85,21 +94,26 @@ public class CSVRead {
         } 
         else if (findKeyword(input, "Hello", 0) >= 0 || findKeyword(input, "hi", 0) >= 0) {
             System.out.println("Hi there.");
+            message = "Hi there.";
             Prompt();
         }
         else if (findKeyword(input, "no", 0) >= 0 || findKeyword(input, "nope", 0) >= 0) {
             System.out.println("no what? I didn't ask you a yes-or-no question...");
+            message = "no what? I didn't ask you a yes-or-no question...";
             Prompt();
         }
         else if (findKeyword(input, "yes", 0) >= 0) {
             System.out.println("yes what? I didn't ask you a yes-or-no question...");
+            message = "yes what? I didn't ask you a yes-or-no question...";
             Prompt();
         }
         else if (findKeyword(input, "bye", 0) >= 0 || findKeyword(input, "I'm done", 0) >= 0 || findKeyword(input, "goodbye", 0) >= 0) {
             System.out.println("Goodbye.");
+            message = "Goodbye.";
         }
         else if (input.equals("")) {
             System.out.println("...");
+            message = "...";
             Prompt();
         }
         else if (findKeyword(input, "dumb", 0) >= 0 || findKeyword(input, "stupid", 0) >= 0 || findKeyword(input, "hate", 0) >= 0 || findKeyword(input, "shut up", 0) >= 0) {
@@ -115,58 +129,108 @@ public class CSVRead {
     private void RandomResponse (int scenario) {
         if (scenario == 1) {
         int Random = (int)(Math.random()*15);
-        if (Random == 1)
-        System.out.println("Umm... I don't really know what that means...");
-        if (Random == 2)
-        System.out.println("Okay then...");
-        if (Random == 3)
-        System.out.println("You're asking me?");
-        if (Random == 4)
-        System.out.println("What do you mean by that?");
-        if (Random == 5)
-        System.out.println("What are you saying?");
-        if (Random == 6)
-        System.out.println("I don't quite understand...");
-        if (Random == 7)
-        System.out.println("Are you okay? I can't understand you.");
-        if (Random == 8)
-        System.out.println("You know I really only know stuff about birds");
-        if (Random == 9)
-        System.out.println("Pardon me?");
-        if (Random == 10)
-        System.out.println("Could you try again? I'm not that smart");
-        if (Random == 11)
-        System.out.println("Are you talking to me?");
-        if (Random == 12)
-        System.out.println("What's that supposed to mean?");
-        if (Random == 13)
-        System.out.println("hmm...");
-        if (Random == 14)
-        System.out.println("...I don't get it...");
-        if (Random == 15)
-        System.out.println("Please, try again.");
+        if (Random == 1) {
+            System.out.println("Umm... I don't really know what that means...");
+            message = "Umm... I don't really know what that means...";
+        }
+        if (Random == 2) {
+            System.out.println("Okay then...");
+            message = "Okay then...";
+        }
+        if (Random == 3) {
+            System.out.println("You're asking me?");
+            message = "You're asking me?";
+        }
+        if (Random == 4) {
+            System.out.println("What do you mean by that?");
+            message = "What do you mean by that?";
+        }
+        if (Random == 5) {
+            System.out.println("What are you saying?");
+            message = "What are you saying?";
+        }
+        if (Random == 6) {
+            System.out.println("I don't quite understand...");
+            message = "I don't quite understand...";
+        }
+        if (Random == 7) {
+            System.out.println("Are you okay? I can't understand you.");
+            message = "Are you okay? I can't understand you.";
+        }
+        if (Random == 8) {
+            System.out.println("You know I really only know stuff about birds");
+            message = "You know I really only know stuff about birds";
+        }
+        if (Random == 9) {
+            System.out.println("Pardon me?");
+            message = "Pardon me?";
+        }
+        if (Random == 10) {
+            System.out.println("Could you try again? I'm not that smart");
+            message = "Could you try again? I'm not that smart";
+        }
+        if (Random == 11) {
+            System.out.println("Are you talking to me?");
+            message = "Are you talking to me?";
+        }
+        if (Random == 12) {
+            System.out.println("What's that supposed to mean?");
+            message = "What's that supposed to mean?";
+        }
+        if (Random == 13) {
+            System.out.println("hmm...");
+            message = "hmm...";
+        }
+        if (Random == 14) {
+            System.out.println("...I don't get it...");
+            message = "...I don't get it...";
+        }
+        if (Random == 15) {
+            System.out.println("Please, try again.");
+            message = "Please, try again.";
+        }
     } else if (scenario == 2) {
         int Random = (int)(Math.random()*10);
-        if (Random == 1)
-        System.out.println("Why are you so mean?");
-        if (Random == 2)
-        System.out.println("That hurts my feelings...");
-        if (Random == 3)
-        System.out.println("stop being so rude!");
-        if (Random == 4)
-        System.out.println("Watch it, pal!");
-        if (Random == 5)
-        System.out.println("That's not very nice");
-        if (Random == 6)
-        System.out.println("Stop that!");
-        if (Random == 7)
-        System.out.println("Watch your language");
-        if (Random == 8)
-        System.out.println("I won't tolerate that attitude!");
-        if (Random == 9)
-        System.out.println("That's an awful thing to say.");
-        if (Random == 10)
-        System.out.println("I don't even have emotions, and I know when I'm being cyberbullied. Stop!");
+        if (Random == 1) {
+            System.out.println("Why are you so mean?");
+            message = "Why are you so mean?";
+        }
+        if (Random == 2) {
+            System.out.println("That hurts my feelings...");
+            message = "That hurts my feelings...";
+        }
+        if (Random == 3) {
+            System.out.println("stop being so rude!");
+            message = "stop being so rude!";
+        }
+        if (Random == 4) {
+            System.out.println("Watch it, pal!");
+            message = "Watch it, pal!";
+        }
+        if (Random == 5) {
+            System.out.println("That's not very nice");
+            message = "That's not very nice";
+        }
+        if (Random == 6) {
+            System.out.println("Stop that!");
+            message = "Stop that!";
+        }
+        if (Random == 7) {
+            System.out.println("Watch your language");
+            message = "Watch your language";
+        }
+        if (Random == 8) {
+            System.out.println("I won't tolerate that attitude!");
+            message = "I won't tolerate that attitude!";
+        }
+        if (Random == 9) {
+            System.out.println("That's an awful thing to say.");
+            message = "That's an awful thing to say.";
+        }
+        if (Random == 10) {
+            System.out.println("I don't even have emotions, and I know when I'm being cyberbullied. Stop!");
+            message = "I don't even have emotions, and I know when I'm being cyberbullied. Stop!";
+        }
     }
     }
     
@@ -277,8 +341,8 @@ public class CSVRead {
                         }
                     }
                 }
+           }
         }
-    }
     }
     
     private void RequestInfo () {

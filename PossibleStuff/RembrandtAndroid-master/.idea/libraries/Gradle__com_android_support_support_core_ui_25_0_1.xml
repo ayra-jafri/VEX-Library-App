@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.android.support:support-core-ui-25.0.1">
     <CLASSES>
-      <root url="file://$USER_HOME$/.android/build-cache/5720faca8a4aa2b47ef6c614d5b00c6352328a7b/output/res" />
-      <root url="jar://$USER_HOME$/.android/build-cache/5720faca8a4aa2b47ef6c614d5b00c6352328a7b/output/jars/libs/internal_impl-25.0.1.jar!/" />
-      <root url="jar://$USER_HOME$/.android/build-cache/5720faca8a4aa2b47ef6c614d5b00c6352328a7b/output/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/b2069639c1f5296b6db6648aa8af0a6cb0f95925/output/jars/libs/internal_impl-25.0.1.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/b2069639c1f5296b6db6648aa8af0a6cb0f95925/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/b2069639c1f5296b6db6648aa8af0a6cb0f95925/output/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/AppData/Local/Android/Sdk/extras/android/m2repository/com/android/support/support-core-ui/25.0.1/support-core-ui-25.0.1-javadoc.jar!/" />
