@@ -6,6 +6,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import android.widget.TextView;
 
 import java.io.File;
+import java.io.FileOutputStream;
 
 public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSION_REQUEST = 1;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textView1, textView2;
     EditText editText1, editText2;
     ImageView imageView;
+    String currentImage = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,13 +68,17 @@ public class MainActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                View content = findViewById(R.id.lay);
+                Bitmap bitmap = getScreenShot(content);
+                currentImage = "meme" + System.currentTimeMillis() + ".png";
+                store(bitmap, currentImage);
+                share.setEnabled(true);
             }
         });
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                shareImage(currentImage);
             }
         });
         go.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +92,31 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public static Bitmap getScreenShot(View view) {
+        view.setDrawingCacheEnabled(true);
+        Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache());
+        view.setDrawingCacheEnabled(false);
+        return bitmap;
+    }
+
+    public void store(Bitmap bm,String fileName) {
+        String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/MEME";
+        File dir = new File(dirPath);
+        if(!dir.exists()){
+            dir.mkdir();
+        }
+        File file = new File(dirPath, fileName);
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            bm.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.flush();
+            fos.close();
+            Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
+        }
+        catch (Exception e) {
+            Toast.makeText(this, "Error Saving!", Toast.LENGTH_SHORT).show();
+        }
+    }
     private void shareImage(String fileName) {
         String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/MEME";
         Uri uri = Uri.fromFile(new File(dirPath, fileName));
@@ -97,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_STREAM,uri);
 
         try{
-            //startActivity();
+            startActivity(Intent.createChooser(intent,"Share via"));
             //@Gorkem you stopped here last, video time 23:43
             //https://www.youtube.com/watch?v=C10GErrRqYw
         } catch (ActivityNotFoundException e){
