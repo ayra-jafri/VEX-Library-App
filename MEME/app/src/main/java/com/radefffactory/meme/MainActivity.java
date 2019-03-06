@@ -2,8 +2,13 @@ package com.radefffactory.meme;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -16,6 +21,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.TextView;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSION_REQUEST = 1;
@@ -76,13 +83,41 @@ public class MainActivity extends AppCompatActivity {
                 editText2.setText("");
             }
         });
-        //@Gorkem, take care of below errors https://www.youtube.com/watch?v=C10GErrRqYw
-        //@Override
-        //public void onRequestPermissionsResult(int requestCode, @NonNull String[])
+    }
+
+    private void shareImage(String fileName) {
+        String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/MEME";
+        Uri uri = Uri.fromFile(new File(dirPath, fileName));
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.setType("image/*");
+
+        intent.putExtra(Intent.EXTRA_SUBJECT,"");
+        intent.putExtra(Intent.EXTRA_TEXT,"");
+        intent.putExtra(Intent.EXTRA_STREAM,uri);
+
+        try{
+            //startActivity();
+            //@Gorkem you stopped here last, video time 23:43
+            //https://www.youtube.com/watch?v=C10GErrRqYw
+        } catch (ActivityNotFoundException e){
+            Toast.makeText(this,"No sharing app found",Toast.LENGTH_SHORT).show();
+        }
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode,resultCode,data);
+        if(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+            Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+            save.setEnabled(true);
+            share.setEnabled(false);
+
+        }
     }
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
