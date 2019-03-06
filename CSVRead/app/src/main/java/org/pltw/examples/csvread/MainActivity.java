@@ -1,9 +1,16 @@
 package org.pltw.examples.csvread;
 
+/**
+ * Abstract class CSVRead - write a description of the class here
+ * @author Micah Boursier, Gorkem Guclu
+ * @version
+ * CSVRead.java
+ * Reads a Comma Separated Value file and prints its contents.
+ */
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
-
 import java.io.*;
 import java.lang.*;
 import java.util.Arrays;
@@ -22,20 +29,38 @@ public class MainActivity extends AppCompatActivity {
     public int birdInQuestion;
     public int pos;
     public String checker;
+    public String message;
+    public String initialMessage;
     public int position1;
     public int position2;
-    public String message;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final TextView helloTextView = (TextView) findViewById(R.id.prompt);
-        helloTextView.setText(message);
+        while(true) {
+            if(!initialMessage.equals(message)) {
+                initialMessage = message;
+                helloTextView.setText(message);
+            }
+        }
     }
-    public MainActivity() throws Exception{
-        BufferedReader CSVFile = new BufferedReader(new FileReader("birds.csv"));
+    public MainActivity () throws Exception{
+        /*
+         * Read first line.
+         * The while checks to see if the data is null. If
+         * it is, we've hit the end of the file. If not,
+         * process the data.
+         * message=();
+         * Print the data line.
+         * Read next line of data.
+         * Close the file once all data has been read.
+         * End the printout with a blank line.
+         */
+
+        BufferedReader CSVFile = new BufferedReader(new FileReader("Birds.csv"));
         String dataRow = CSVFile.readLine();
-        while (dataRow != null) {
+        while (dataRow != null){
             String[] dataArray = dataRow.split(",");
             eBirdSpecNum.add(dataArray[0]);
             sort.add(dataArray[1]);
@@ -49,25 +74,24 @@ public class MainActivity extends AppCompatActivity {
             dataRow = CSVFile.readLine();
         }
         CSVFile.close();
-        System.out.println();
-        message="";
-        System.out.println("Hello! I'm Birdbot, your BirdSearch application.");
-        message="Hello! I'm Birdbot, your BirdSearch application.";
+        message = "";
+        message=("Hello! I'm Birdbot, your BirdSearch application.");
+        message = "Hello! I'm Birdbot, your BirdSearch application.";
         Scanner in = new Scanner(System.in);
-        System.out.println("wanna talk about birds?");
-        message="wanna talk about birds?";
+        message=("wanna talk about birds?");
+        message= "wanna talk about birds?";
         String input = in.nextLine();
         if (findKeyword(input, "yes", 0) >= 0 || findKeyword(input, "sure", 0) >= 0 || findKeyword(input, "yeah", 0) >= 0) {
-            System.out.println("Awesome!");
-            message="Awesome!";
+            message=("Awesome!");
+            message = "Awesome!";
         } else if (findKeyword(input, "Tell me about the", 0) >= 0 || findKeyword(input, "know about the", 0) >= 0 || findKeyword(input, "learn about the", 0) >= 0 || findKeyword(input, "hear about the", 0) >= 0) {
             TellMeProtocol(input);
         } else {
-            System.out.println("TOO BAD! We're talking about birds!");
-            message="TOO BAD! We're talking about birds!";
+            message=("TOO BAD! We're talking about birds!");
+            message = "TOO BAD! We're talking about birds!";
         }
-        System.out.println("So do you have a specific bird to talk about or do you have a characteristic you want to find out which birds are in?");
-        message="So do you have a specific bird to talk about or do you have a characteristic you want to find out which birds are in?";
+        message=("So do you have a specific bird to talk about or do you have a characteristic you want to find out which birds are in?");
+        message = "So do you have a specific bird to talk about or do you have a characteristic you want to find out which birds are in?";
         Prompt();
     }
     private void Prompt () {
@@ -75,10 +99,10 @@ public class MainActivity extends AppCompatActivity {
         String input = in.nextLine();
         if (findKeyword(input, "tell me about a random bird", 0) >= 0 || findKeyword(input, "give me a random bird", 0) >= 0 || findKeyword(input, "show me a random bird", 0) >= 0) {
             int RandomBird = (int)(Math.random()*34325);
-            System.out.println("Okay, here's a bird I really like! The " + iterateUp(englishName, RandomBird).toLowerCase() + " belongs to the " + speciesGroup.get(RandomBird) + " group, and lives in the " + Direction(range.get(birdInQuestion)) + ".");
-            message="Okay, here's a bird I really like! The " + iterateUp(englishName, RandomBird).toLowerCase() + " belongs to the " + speciesGroup.get(RandomBird) + " group, and lives in the " + Direction(range.get(birdInQuestion));
-            System.out.println("Pretty nifty, huh? is there any other bird you want to learn about?");
-            message="Pretty nifty, huh? is there any other bird you want to learn about?";
+            message=("Okay, here's a bird I really like! The " + iterateUp(englishName, RandomBird).toLowerCase() + " belongs to the " + speciesGroup.get(RandomBird) + " group, and lives in the " + Direction(range.get(birdInQuestion)) + ".");
+            message = "Okay, here's a bird I really like! The " + iterateUp(englishName, RandomBird).toLowerCase() + " belongs to the " + speciesGroup.get(RandomBird) + " group, and lives in the " + Direction(range.get(birdInQuestion)) + ".";
+            message=("Pretty nifty, huh? is there any other bird you want to learn about?");
+            message = "Pretty nifty, huh? is there any other bird you want to learn about?";
             Prompt();
         }
         else if (findKeyword(input, "Tell me about the", 0) >= 0 || findKeyword(input, "know about the", 0) >= 0 || findKeyword(input, "learn about the", 0) >= 0 || findKeyword(input, "hear about the", 0) >= 0) {
@@ -86,27 +110,27 @@ public class MainActivity extends AppCompatActivity {
             TellMeProtocol(input);
         }
         else if (findKeyword(input, "Hello", 0) >= 0 || findKeyword(input, "hi", 0) >= 0) {
-            System.out.println("Hi there.");
-            message="Hi there.";
+            message=("Hi there.");
+            message = "Hi there.";
             Prompt();
         }
         else if (findKeyword(input, "no", 0) >= 0 || findKeyword(input, "nope", 0) >= 0) {
-            System.out.println("no what? I didn't ask you a yes-or-no question...");
-            message="no what? I didn't ask you a yes-or-no question...";
+            message=("no what? I didn't ask you a yes-or-no question...");
+            message = "no what? I didn't ask you a yes-or-no question...";
             Prompt();
         }
         else if (findKeyword(input, "yes", 0) >= 0) {
-            System.out.println("yes what? I didn't ask you a yes-or-no question...");
-            message="yes what? I didn't ask you a yes-or-no question...";
+            message=("yes what? I didn't ask you a yes-or-no question...");
+            message = "yes what? I didn't ask you a yes-or-no question...";
             Prompt();
         }
         else if (findKeyword(input, "bye", 0) >= 0 || findKeyword(input, "I'm done", 0) >= 0 || findKeyword(input, "goodbye", 0) >= 0) {
-            System.out.println("Goodbye.");
-            message="Goodbye.";
+            message=("Goodbye.");
+            message = "Goodbye.";
         }
         else if (input.equals("")) {
-            System.out.println("...");
-            message="...";
+            message=("...");
+            message = "...";
             Prompt();
         }
         else if (findKeyword(input, "dumb", 0) >= 0 || findKeyword(input, "stupid", 0) >= 0 || findKeyword(input, "hate", 0) >= 0 || findKeyword(input, "shut up", 0) >= 0) {
@@ -118,113 +142,116 @@ public class MainActivity extends AppCompatActivity {
             Prompt();
         }
     }
+
     private void RandomResponse (int scenario) {
         if (scenario == 1) {
             int Random = (int)(Math.random()*15);
             if (Random == 1) {
-                System.out.println("Umm... I don't really know what that means...");
-                message="Umm... I don't really know what that means...";
+                message=("Umm... I don't really know what that means...");
+                message = "Umm... I don't really know what that means...";
             }
             if (Random == 2) {
-                System.out.println("Okay then...");
-                message="Okay then...";
+                message=("Okay then...");
+                message = "Okay then...";
             }
             if (Random == 3) {
-                System.out.println("You're asking me?");
+                message=("You're asking me?");
                 message = "You're asking me?";
             }
             if (Random == 4) {
-                System.out.println("What do you mean by that?");
+                message=("What do you mean by that?");
                 message = "What do you mean by that?";
             }
             if (Random == 5) {
-                System.out.println("What are you saying?");
-                message="What are you saying?";
+                message=("What are you saying?");
+                message = "What are you saying?";
+            }
             if (Random == 6) {
-                System.out.println("I don't quite understand...");
+                message=("I don't quite understand...");
                 message = "I don't quite understand...";
             }
             if (Random == 7) {
-                System.out.println("Are you okay? I can't understand you.");
+                message=("Are you okay? I can't understand you.");
                 message = "Are you okay? I can't understand you.";
             }
             if (Random == 8) {
-                System.out.println("You know I really only know stuff about birds");
+                message=("You know I really only know stuff about birds");
                 message = "You know I really only know stuff about birds";
             }
             if (Random == 9) {
-                System.out.println("Pardon me?");
+                message=("Pardon me?");
                 message = "Pardon me?";
             }
             if (Random == 10) {
-                System.out.println("Could you try again? I'm not that smart");
+                message=("Could you try again? I'm not that smart");
                 message = "Could you try again? I'm not that smart";
+            }
             if (Random == 11) {
-                System.out.println("Are you talking to me?");
+                message=("Are you talking to me?");
                 message = "Are you talking to me?";
             }
             if (Random == 12) {
-                System.out.println("What's that supposed to mean?");
+                message=("What's that supposed to mean?");
                 message = "What's that supposed to mean?";
             }
             if (Random == 13) {
-                System.out.println("hmm...");
+                message=("hmm...");
                 message = "hmm...";
             }
             if (Random == 14) {
-                System.out.println("...I don't get it...");
+                message=("...I don't get it...");
                 message = "...I don't get it...";
             }
             if (Random == 15) {
-                System.out.println("Please, try again.");
+                message=("Please, try again.");
                 message = "Please, try again.";
             }
         } else if (scenario == 2) {
-            Random = (int)(Math.random()*10);
+            int Random = (int)(Math.random()*10);
             if (Random == 1) {
-                System.out.println("Why are you so mean?");
+                message=("Why are you so mean?");
                 message = "Why are you so mean?";
             }
             if (Random == 2) {
-                System.out.println("That hurts my feelings...");
-                message="That hurts my feelings";
+                message=("That hurts my feelings...");
+                message = "That hurts my feelings...";
             }
             if (Random == 3) {
-                System.out.println("stop being so rude!");
-                message = "stop being so rude";
+                message=("stop being so rude!");
+                message = "stop being so rude!";
             }
             if (Random == 4) {
-                System.out.println("Watch it, pal!");
+                message=("Watch it, pal!");
                 message = "Watch it, pal!";
             }
             if (Random == 5) {
-                System.out.println("That's not very nice");
+                message=("That's not very nice");
                 message = "That's not very nice";
             }
             if (Random == 6) {
-                System.out.println("Stop that!");
+                message=("Stop that!");
                 message = "Stop that!";
             }
             if (Random == 7) {
-                System.out.println("Watch your language");
+                message=("Watch your language");
                 message = "Watch your language";
             }
             if (Random == 8) {
-                System.out.println("I won't tolerate that attitude!");
-                message = "I won't tolerate that attitude";
+                message=("I won't tolerate that attitude!");
+                message = "I won't tolerate that attitude!";
             }
             if (Random == 9) {
-                System.out.println("That's an awful thing to say.");
+                message=("That's an awful thing to say.");
                 message = "That's an awful thing to say.";
             }
             if (Random == 10) {
-                System.out.println("I don't even have emotions, and I know when I'm being cyberbullied. Stop!");
+                message=("I don't even have emotions, and I know when I'm being cyberbullied. Stop!");
                 message = "I don't even have emotions, and I know when I'm being cyberbullied. Stop!";
             }
         }
     }
 
-    private void TellMeProtocol(String statement) {
+    private void TellMeProtocol (String statement) {
         statement = statement.trim();
         String lastChar = statement.substring(statement.length() - 1);
         int psn = 0;
@@ -247,8 +274,7 @@ public class MainActivity extends AppCompatActivity {
             restOfStatement = statement.substring(psn + 15).trim().toLowerCase();
         }
         if (restOfStatement.equals("")) {
-            System.out.println("Please, try again.");
-            message = "Please, try again.";
+            message=("Please, try again.");
             Prompt();
         } else {
 
@@ -266,8 +292,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 if (matches == 0) {
-                    System.out.println("I don't know of any birds called '" + restOfStatement + ",' and I'm supposed to know this stuff...");
-                    message = "I don't know of any birds called '" + restOfStatement + ",' and I'm supposed to know this stuff...";
+                    message=("I don't know of any birds called '" + restOfStatement + ",' and I'm supposed to know this stuff...");
                     Prompt();
                 } else if (matches == 1) {
                     for (String item:scientificName) {
@@ -277,20 +302,17 @@ public class MainActivity extends AppCompatActivity {
                     }
                     RequestInfo();
                 } else if (matches > 1){
-                    System.out.println("I found multiple matches for " + restOfStatement + ", which are you interested in?");
-                    message = "I found multiple matches for " + restOfStatement + ", which are you interested in?";
+                    message=("I found multiple matches for " + restOfStatement + ", which are you interested in?");
                     int choices = 1;
                     if (choices == 1) {
                         for (String item:scientificName) {
                             if (item.toLowerCase().contains(restOfStatement)) {
-                                System.out.println(choices + ": " + item);
-                                message = choices + ": " + item;
+                                message=(choices + ": " + item);
                                 choices++;
                             }
                         }
                     }
-                    System.out.println("which number bird do you want to learn about.");
-                    message = "which number bird do you want to learn about.";
+                    message=("which number bird do you want to learn about.");
                     Scanner in = new Scanner(System.in);
                     String input = in.nextLine();
                     choices = 0;
@@ -312,20 +334,18 @@ public class MainActivity extends AppCompatActivity {
                 }
                 RequestInfo();
             } else if (matches > 1){
-                System.out.println("I found multiple matches for " + restOfStatement + ", which are you interested in?");
-                message = "I found multiple matches for " + restOfStatement + ", which are you interested in?";
+                message=("I found multiple matches for " + restOfStatement + ", which are you interested in?");
                 int choices = 1;
                 if (choices ==1) {
+
                     for (String item:englishName) {
                         if (item.toLowerCase().contains(restOfStatement)) {
-                            System.out.println(choices + ": " + item);
-                            message = choices + ": " + item;
+                            message=(choices + ": " + item);
                             choices++;
                         }
                     }
                 }
-                System.out.println("State the number that you want to learn about.");
-                message = "State the number that you want to learn about.";
+                message=("State the number that you want to learn about.");
                 Scanner in = new Scanner(System.in);
                 String input = in.nextLine();
                 choices = 0;
@@ -342,7 +362,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void RequestInfo(){
+    private void RequestInfo () {
         RequestInfo("");
     }
 
@@ -350,12 +370,10 @@ public class MainActivity extends AppCompatActivity {
         Scanner in = new Scanner(System.in);
         String input = new String();
         if (kickOff.equals("")){
-            System.out.println("What would you like to know about the " + iterateUp(englishName, birdInQuestion).toLowerCase() + "?");
-            message = "What would you like to know about the " + iterateUp(englishName, birdInQuestion).toLowerCase() + "?";
+            message=("What would you like to know about the " + iterateUp(englishName, birdInQuestion).toLowerCase() + "?");
             input = in.nextLine();
             if (findKeyword(input, "nothing", 0) >= 0) {
-                System.out.println("Why did you even ask then? You know what? Nevermind... Any other birds that I might tell you about?");
-                message = "Why did you even ask then? You know what? Nevermind... Any other birds that I might tell you about?";
+                message=("Why did you even ask then? You know what? Nevermind... Any other birds that I might tell you about?");
                 Prompt();
             }
         } else {
@@ -365,43 +383,35 @@ public class MainActivity extends AppCompatActivity {
         if (findKeyword(input, "scientific name", 0) >= 0 || findKeyword(input, "what do scientists call it?", 0) >= 0)
         {
             if (scientificName.get(birdInQuestion).equals("")) {
-                System.out.println("The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " is a broad group, and doesn't have a singular scientific name.");
-                message = "The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " is a broad group, and doesn't have a singular scientific name.";
+                message=("The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " is a broad group, and doesn't have a singular scientific name.");
             } else {
-                System.out.println("The scientific name of the " + iterateUp(englishName, birdInQuestion).toLowerCase() + " is " + scientificName.get(birdInQuestion) + ".");
-                message = "The scientific name of the " + iterateUp(englishName, birdInQuestion).toLowerCase() + " is " + scientificName.get(birdInQuestion) + ".";
+                message=("The scientific name of the " + iterateUp(englishName, birdInQuestion).toLowerCase() + " is " + scientificName.get(birdInQuestion) + ".");
             }
         }
         if (findKeyword(input, "category", 0) >= 0){
-            System.out.println("The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " is categorized as a " + category.get(birdInQuestion) + ".");
-            message = "The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " is categorized as a " + category.get(birdInQuestion) + ".";
+            message=("The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " is categorized as a " + category.get(birdInQuestion) + ".");
         }
         if (findKeyword(input, "order", 0) >= 0){
-            System.out.println("The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " belongs in the " + order.get(birdInQuestion) + " order.");
-            message = "The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " belongs in the " + order.get(birdInQuestion) + " order.";
+            message=("The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " belongs in the " + order.get(birdInQuestion) + " order.");
         }
         if (findKeyword(input, "family", 0) >= 0){
-            System.out.println("The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " belongs to the " + family.get(birdInQuestion) + " family.");
-            message = "The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " belongs to the " + family.get(birdInQuestion) + " family.";
+            message=("The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " belongs to the " + family.get(birdInQuestion) + " family.");
         }
         if (findKeyword(input, "range", 0) >= 0 || findKeyword(input, "habitat", 0) >= 0 || findKeyword(input, "home" , 0) >= 0 || findKeyword(input, "live", 0) >= 0){
             if (scientificName.get(birdInQuestion).equals("")) {
-                System.out.println("The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " is a broad group, and has subspecies in many separate places.");
-                message = "The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " is a broad group, and has subspecies in many separate places.";
+                message=("The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " is a broad group, and has subspecies in many separate places.");
             } else {
-                System.out.println("The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " lives in " + Direction(range.get(birdInQuestion)) + ".");
-                message = "The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " lives in " + Direction(range.get(birdInQuestion)) + ".";
-                System.out.println("If you'd like to view an interactive map of recent sightings of the " + iterateUp(englishName, birdInQuestion).toLowerCase() + ", visit: https://ebird.org/map/" + iterateUp(eBirdSpecNum, birdInQuestion));
-                message = "If you'd like to view an interactive map of recent sightings of the " + iterateUp(englishName, birdInQuestion).toLowerCase() + ", visit: https://ebird.org/map/" + iterateUp(eBirdSpecNum, birdInQuestion);
+                message=("The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " lives in " + Direction(range.get(birdInQuestion)) + ".");
+                message=("If you'd like to view an interactive map of recent sightings of the " + iterateUp(englishName, birdInQuestion).toLowerCase() + ", visit: https://ebird.org/map/" + iterateUp(eBirdSpecNum, birdInQuestion));
             }
+
+
         }
         if (findKeyword(input, "group", 0) >= 0 || findKeyword(input, "speciesGroup", 0) >= 0) {
-            System.out.println("The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " belongs to the " + speciesGroup.get(birdInQuestion) + " group.");
-            message = "The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " belongs to the " + speciesGroup.get(birdInQuestion) + " group.";
+            message=("The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " belongs to the " + speciesGroup.get(birdInQuestion) + " group.");
         }
         if (findKeyword(input, "sort", 0) >= 0 || findKeyword(input, "row", 0) >= 0 || findKeyword(input, "place", 0) >= 0) {
-            System.out.println("The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " is in row " + sort.get(birdInQuestion) + " group.");
-            message = "The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " is in row " + sort.get(birdInQuestion) + " group.";
+            message=("The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " is in row " + sort.get(birdInQuestion) + " group.");
         }
         if (findKeyword(input, "subspecies", 0) >= 0 || findKeyword(input, "subgroup", 0) >= 0 || findKeyword(input, "subgroups", 0) >= 0) {
             int i = birdInQuestion + 1;
@@ -411,35 +421,28 @@ public class MainActivity extends AppCompatActivity {
                 i++;
             }
             if (n > 0) {
-                System.out.println("The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " has " + n + " subspecies:");
-                message = "The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " has " + n + " subspecies:";
+                message=("The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " has " + n + " subspecies:");
                 i = birdInQuestion + 1;
                 while (category.get(i).equals("group (polytypic)") || category.get(i).equals("group (monotypic)") || category.get(i).equals("subspecies")) {
-                    System.out.println(category.get(i) + ": " + scientificName.get(i));
-                    message = category.get(i) + ": " + scientificName.get(i);
+                    message=(category.get(i) + ": " + scientificName.get(i));
                     i++;
                 }
             } else {
-                System.out.println("The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " has no subspecies.");
-                message = "The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " has no subspecies.";
+                message=("The " + iterateUp(englishName, birdInQuestion).toLowerCase() + " has no subspecies.");
             }
         }
         if (findKeyword(input, "more", 0) >= 0 || findKeyword(input, "website", 0) >= 0 || findKeyword(input, "picture", 0) >= 0 || findKeyword(input, "pictures", 0) >= 0 || findKeyword(input, "image", 0) >= 0 || findKeyword(input, "images", 0) >= 0) {
-            System.out.println("if you're looking for more information, images, videos, or even sound recordings of the " + iterateUp(englishName, birdInQuestion).toLowerCase() + ", visit this webpage: https://ebird.org/species/" + iterateUp(eBirdSpecNum, birdInQuestion));
-            message = "if you're looking for more information, images, videos, or even sound recordings of the " + iterateUp(englishName, birdInQuestion).toLowerCase() + ", visit this webpage: https://ebird.org/species/" + iterateUp(eBirdSpecNum, birdInQuestion);
+            message=("if you're looking for more information, images, videos, or even sound recordings of the " + iterateUp(englishName, birdInQuestion).toLowerCase() + ", visit this webpage: https://ebird.org/species/" + iterateUp(eBirdSpecNum, birdInQuestion));
         }
-        if (HasSaidWord(input)/*!(findKeyword(input, "sort", 0) >= 0 || findKeyword(input, "row", 0) >= 0 || findKeyword(input, "place", 0) >= 0 || findKeyword(input, "group", 0) >= 0 || findKeyword(input, "speciesGroup", 0) >= 0 || findKeyword(input, "range", 0) >= 0
-        || findKeyword(input, "habitat", 0) >= 0 || findKeyword(input, "home" , 0) >= 0 || findKeyword(input, "family", 0) >= 0 || findKeyword(input, "order", 0) >= 0 || findKeyword(input, "category", 0) >= 0 || findKeyword(input, "scientific name", 0) >= 0
+        if (HasSaidWord(input)/*!(findKeyword(input, "sort", 0) >= 0 || findKeyword(input, "row", 0) >= 0 || findKeyword(input, "place", 0) >= 0 || findKeyword(input, "group", 0) >= 0 || findKeyword(input, "speciesGroup", 0) >= 0 || findKeyword(input, "range", 0) >= 0 
+        || findKeyword(input, "habitat", 0) >= 0 || findKeyword(input, "home" , 0) >= 0 || findKeyword(input, "family", 0) >= 0 || findKeyword(input, "order", 0) >= 0 || findKeyword(input, "category", 0) >= 0 || findKeyword(input, "scientific name", 0) >= 0 
         || findKeyword(input, "what do scientists call it?", 0) >= 0)*/) {
-            System.out.println("I'm sorry, I don't know that... I can tell you the bird's sort, speciesGroup, range, family, order, category, or scientific name, though.");
-            message = "I'm sorry, I don't know that... I can tell you the bird's sort, speciesGroup, range, family, order, category, or scientific name, though.";
-            System.out.println("So what would you like to do?");
-            message = "So what would you like to do?";
+            message=("I'm sorry, I don't know that... I can tell you the bird's sort, speciesGroup, range, family, order, category, or scientific name, though.");
+            message=("So what would you like to do?");
             RequestInfo();
         }
 
-        System.out.println("is there anything else you would like to know about the " + iterateUp(englishName, birdInQuestion).toLowerCase() + "?");
-        message = "is there anything else you would like to know about the " + iterateUp(englishName, birdInQuestion).toLowerCase() + "?";
+        message=("is there anything else you would like to know about the " + iterateUp(englishName, birdInQuestion).toLowerCase() + "?");
         input = in.nextLine();
 
         if (!HasSaidWord(input)) {
@@ -449,22 +452,20 @@ public class MainActivity extends AppCompatActivity {
             RequestInfo();
         }
         else if (findKeyword(input, "no", 0) >= 0 || findKeyword(input, "n", 0) >= 0 || findKeyword(input, "nope", 0) >= 0) {
-            System.out.println("No? Okay then... Is there another bird you'd like to hear about?");
-            message = "No? Okay then... Is there another bird you'd like to hear about?";
+            message=("No? Okay then... Is there another bird you'd like to hear about?");
             Prompt();
         }
         else if (findKeyword(input, "Tell me about the", 0) >= 0 || findKeyword(input, "know about the", 0) >= 0 || findKeyword(input, "learn about the", 0) >= 0 || findKeyword(input, "hear about the", 0) >= 0) {
             TellMeProtocol(input);
         }
         else {
-            System.out.println("...I'll take that as a 'no.' Is there another bird you'd like to hear about?");
-            message = "...I'll take that as a 'no.' Is there another bird you'd like to hear about?";
+            message=("...I'll take that as a 'no.' Is there another bird you'd like to hear about?");
             Prompt();
         }
 
     }
 
-    public String iterateUp(ArrayList<String> s, int startIndex) {
+    public String iterateUp (ArrayList<String> s, int startIndex) {
         int i = startIndex;
         while (s.get(i).equals("")) {
             i++;
@@ -473,7 +474,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String Direction(String s) {
-        //System.out.println("Yeet: " + s);
+        //message=("Yeet: " + s);
         String statement = s.trim().toLowerCase();
         if (statement.equals("")) {
             return "many places";
@@ -542,7 +543,7 @@ public class MainActivity extends AppCompatActivity {
                 statement = "southwest" + statement.substring(2,statement.length());
             }
         }
-        //System.out.println("Dab");
+        //message=("Dab");
         return statement;
     }
 
@@ -551,7 +552,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Search for one word in phrase.  The search is not case sensitive.
      * This method will check that the given goal is not a substring of a longer string
-     * (so, for example, "I know" does not contain "no").
+     * (so, for example, "I know" does not contain "no").  
      * @param statement the string to search
      * @param goal the string to search for
      * @param startPos the character of the string to begin the search at

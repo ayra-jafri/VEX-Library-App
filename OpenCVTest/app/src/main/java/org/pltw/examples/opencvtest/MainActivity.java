@@ -11,7 +11,13 @@ import org.opencv.android.JavaCameraView;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
-
+import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
+import java.io.*;
+import java.lang.*;
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
 
     CameraBridgeViewBase cameraBridgeViewBase;
